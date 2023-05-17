@@ -1,0 +1,11 @@
+
+{% autoescape off %}
+Hello {{name}},
+
+Welcome to OJ-Django Login
+
+Thank you for visiting our website. Please verify your email address by clicking on the link below.
+
+Confirmation Link: http://{{domain}}{% url 'activate' uidb64=uid token=token %}
+
+{% endautoescape %}

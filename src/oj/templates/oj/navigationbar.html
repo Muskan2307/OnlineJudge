@@ -1,0 +1,45 @@
+{% load static %}
+<style>
+    .hello-msg{
+      font-size: 18px;
+      color: #fff;
+      margin-right: 20px;
+    }
+
+    @font-face {
+        font-family: Gistesy;
+        src: url(static/fonts/Gistesy.ttf) format(truetype);
+    }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-dark"
+    style="background-color: #534f4f;">
+    <a class="navbar-brand" href="/"><b style="font-family: 'Gistesy'; font-size: xx-large;">Online Judge</b></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+        data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" href="{%url 'problems'%}">Problems</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{%url 'leaderboard' %}">Leaderboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{%url 'all_submissions' %}">Submissions</a>
+            </li>
+        </ul>
+    </div>
+    <span><a class="hello-msg" href="{% url 'profile' %}">Update Profile</a></span>
+    <span><a class="hello-msg" href="{% url 'password' %}">Change Password</a></span>
+    <span class="hello-msg">Hello,
+        <a class="hello-msg" style="color: rgb(113, 47, 255)"
+            href="{% url 'dashboard' %}">
+            {{request.user}}
+        </a>
+    </span>
+    <span><a class="hello-msg" href="{% url 'logout' %}">Logout</a></span>
+</nav>

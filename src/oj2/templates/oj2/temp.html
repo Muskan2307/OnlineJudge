@@ -1,0 +1,88 @@
+{% extends 'oj/main.html' %}
+
+{% block content %}
+<form method="POST" action="{% url 'add' %}">
+    {% csrf_token %}
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <label for="difficulty">Difficulty:</label>
+    <select id="difficulty" name="difficulty" required>
+        <option value="" selected disabled>Select difficulty level</option>
+        <option value="Easy">Easy</option>
+        <option value="Medium">Medium</option>
+        <option value="Hard">Hard</option>
+    </select><br><br>
+
+    <label for="time_limit">Time Limit (in seconds):</label>
+    <input type="number" id="time_limit" name="time_limit" required><br><br>
+
+    <label for="mem_limit">Memory Limit (in kilobytes):</label>
+    <input type="number" id="mem_limit" name="mem_limit" required><br><br>
+
+    <label for="test_num">Number of test cases:</label>
+    <input type="number" id="test_num" name="test_num" required><br><br>
+
+    <label for="author">Author:</label>
+    <input type="text" id="author" name="author" required><br><br>
+
+    <label for="statement">Problem statement:</label>
+    <textarea id="statement" name="statement" required></textarea><br><br>
+
+    <div id="test-cases-container">
+    </div>
+
+    <button type="submit">Submit</button>
+</form>
+
+{% endblock %}
+
+{% block script %}
+<script>
+  const testCasesContainer = document.getElementById("test-cases-container");
+  const testNumInput = document.getElementById("test_num");
+
+  function addTestCases() {
+    const testNum = parseInt(testNumInput.value);
+    testCasesContainer.innerHTML = ""; // Clear previous test cases
+    for (let i = 1; i <= testNum; i++) {
+      const testCaseDiv = document.createElement("div");
+      testCaseDiv.classList.add("test-case");
+
+      const h4 = document.createElement("h4");
+      h4.textContent = `Test case ${i}`;
+      testCaseDiv.appendChild(h4);
+
+      const inputLabel = document.createElement("label");
+      inputLabel.textContent = "Input:";
+      inputLabel.setAttribute("for", `input${i}`);
+      testCaseDiv.appendChild(inputLabel);
+
+      const inputTextarea = document.createElement("textarea");
+      inputTextarea.setAttribute("id", `input${i}`);
+      inputTextarea.setAttribute("name", `input${i}`);
+      inputTextarea.setAttribute("required", "");
+      testCaseDiv.appendChild(inputTextarea);
+
+      const outputLabel = document.createElement("label");
+      outputLabel.textContent = "Output:";
+      outputLabel.setAttribute("for", `output${i}`);
+      testCaseDiv.appendChild(outputLabel);
+
+      const outputTextarea = document.createElement("textarea");
+      outputTextarea.setAttribute("id", `output${i}`);
+      outputTextarea.setAttribute("name", `output${i}`);
+      outputTextarea.setAttribute("required", "");
+      testCaseDiv.appendChild(outputTextarea);
+
+      testCasesContainer.appendChild(testCaseDiv);
+    }
+  }
+
+  // Call addTestCases function on page load in case test_num input already has a value
+  addTestCases();
+
+  // Call addTestCases function on change event of test_num input
+  testNumInput.addEventListener("change", addTestCases);
+</script>
+{% endblock %}

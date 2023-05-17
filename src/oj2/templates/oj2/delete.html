@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .required::after {
+      content: " *";
+      color: red;
+      }
+    </style>
+  <title>Extend Form with JavaScript</title>
+
+</head>
+
+<style>
+  .form-style-6{
+font: 95% Arial, Helvetica, sans-serif;
+max-width: 400px;
+margin: 10px auto;
+padding: 16px;
+background: #F7F7F7;
+}
+.form-style-6 h1{
+background: #0F3169;
+padding: 20px 0;
+font-size: 140%;
+font-weight: 300;
+text-align: center;
+color: #fff;
+margin: -16px -16px 16px -16px;
+}
+.form-style-6 input[type="text"],
+.form-style-6 input[type="date"],
+.form-style-6 input[type="datetime"],
+.form-style-6 input[type="email"],
+.form-style-6 input[type="number"],
+.form-style-6 input[type="search"],
+.form-style-6 input[type="time"],
+.form-style-6 input[type="url"],
+.form-style-6 textarea,
+.form-style-6 select 
+{
+-webkit-transition: all 0.30s ease-in-out;
+-moz-transition: all 0.30s ease-in-out;
+-ms-transition: all 0.30s ease-in-out;
+-o-transition: all 0.30s ease-in-out;
+outline: none;
+box-sizing: border-box;
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+width: 100%;
+background: #fff;
+margin-bottom: 4%;
+border: 1px solid #ccc;
+padding: 3%;
+color: #555;
+font: 95% Arial, Helvetica, sans-serif;
+}
+.form-style-6 input[type="text"]:focus,
+.form-style-6 input[type="date"]:focus,
+.form-style-6 input[type="datetime"]:focus,
+.form-style-6 input[type="email"]:focus,
+.form-style-6 input[type="number"]:focus,
+.form-style-6 input[type="search"]:focus,
+.form-style-6 input[type="time"]:focus,
+.form-style-6 input[type="url"]:focus,
+.form-style-6 textarea:focus,
+.form-style-6 select:focus
+{
+box-shadow: 0 0 5px #0F3169;
+padding: 3%;
+border: 1px solid #0F3169;
+}
+
+.form-style-6 input[type="submit"],
+.form-style-6 input[type="button"]{
+box-sizing: border-box;
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+width: 100%;
+padding: 3%;
+background: #0F3169;
+border-bottom: 2px solid #0F3169;
+border-top-style: none;
+border-right-style: none;
+border-left-style: none;	
+color: #fff;
+}
+.form-style-6 input[type="submit"]:hover,
+.form-style-6 input[type="button"]:hover{
+background: #cfdbef;
+}
+
+html, body {
+min-height: 100%;
+}
+body, div, form, input, select, textarea, p { 
+padding: 0;
+margin: 0;
+outline: none;
+font-family: Roboto, Arial, sans-serif;
+font-size: 14px;
+color: #666;
+line-height: 22px;
+}
+h1 {
+position: absolute;
+margin: 0;
+font-size: 32px;
+color: #fff;
+z-index: 2;
+}
+.testbox {
+display: flex;
+justify-content: center;
+align-items: flex-start;
+height: 100vh;
+width: 100vw;
+}
+form {
+width: 100%;
+padding: 20px;
+border-radius: 6px;
+background: #fff;
+
+}
+.banner {
+position: relative;
+height: 210px;
+background-image: url("/uploads/media/default/0001/01/a3df023f124a8bec3b213347404fe0a7318161de.jpeg");  
+background-size: cover;
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+}
+.banner::after {
+content: "";
+background-color:  #534f4f; 
+position: absolute;
+width: 100%;
+height: 100%;
+}
+p.top-info {
+margin: 10px 0;
+}
+input, select, textarea {
+margin-bottom: 10px;
+border: 1px solid #ccc;
+border-radius: 3px;
+}
+input {
+width: calc(100% - 10px);
+padding: 5px;
+}
+select {
+width: 100%;
+padding: 5px;
+background: transparent;
+}
+textarea {
+width: calc(100% - 12px);
+padding: 5px;
+}
+.item:hover p, .item:hover i, .question:hover p, .question label:hover, input:hover::placeholder {
+color: #534f4f;
+}
+.item input:hover, .item select:hover, .item textarea:hover {
+border: 1px solid transparent;
+box-shadow: 0 0 8px 0 #534f4f;
+color: #534f4f;
+}
+.item {
+position: relative;
+margin: 10px 0;
+}
+input[type="date"]::-webkit-inner-spin-button {
+display: none;
+}
+.item i, input[type="date"]::-webkit-calendar-picker-indicator {
+position: absolute;
+font-size: 20px;
+color: #a9a9a9;
+}
+.item i {
+right: 2%;
+top: 30px;
+z-index: 1;
+}
+[type="date"]::-webkit-calendar-picker-indicator {
+right: 1%;
+z-index: 2;
+opacity: 0;
+cursor: pointer;
+}
+input[type=radio] {
+width: 0;
+visibility: hidden;
+}
+label.radio {
+position: relative;
+display: inline-block;
+margin: 5px 20px 25px 0;
+cursor: pointer;
+}
+.question span {
+margin-left: 30px;
+}
+label.radio:before {
+content: "";
+position: absolute;
+left: 0;
+width: 17px;
+height: 17px;
+border-radius: 50%;
+border: 2px solid  #534f4f;
+}
+label.radio:after {
+content: "";
+position: absolute;
+width: 8px;
+height: 4px;
+top: 6px;
+left: 5px;
+background: transparent;
+border: 3px solid  #534f4f;
+border-top: none;
+border-right: none;
+transform: rotate(-45deg);
+opacity: 0;
+}
+input[type=radio]:checked + label:after {
+opacity: 1;
+}
+.btn-block {
+margin-top: 10px;
+text-align: center;
+}
+button {
+width: 150px;
+padding: 10px;
+border: none;
+border-radius: 5px; 
+background:  #534f4f;
+font-size: 16px;
+color: #fff;
+cursor: pointer;
+}
+button:hover {
+background:  #534f4f;
+}
+@media (min-width: 568px) {
+.name-item, .city-item {
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+}
+.name-item input, .city-item input {
+width: calc(50% - 20px);
+}
+.city-item select {
+width: calc(50% - 8px);
+}
+}
+</style>
+
+<body>
+    <h4>
+        {{error_message}}
+    </h4>
+
+  <div class="testbox">
+    <form method="POST" action="{% url 'delete' %}" id="myFormdel">
+        {% csrf_token %}
+        <br>
+        <label for="name">Problem Name:<span class="required"></span></label>
+        <input type="text" id="name" name="name" required><br><br>
+        <button type="submit">Submit</button>    
+    </form>
+  </div>
+</body>
+</html>
